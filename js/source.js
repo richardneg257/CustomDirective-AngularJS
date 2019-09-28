@@ -1,6 +1,6 @@
 angular
     .module('app', ['ngMessages'])
-    .directive('customValidator', function () {
+    .directive('customValidator', function ($http, $q) {
         return {
             restrict: 'A',
             require: 'ngModel',
@@ -15,7 +15,21 @@ angular
 
                 ngModel.$validators.pattern = function patternParser(modelValue, viewValue) {
                     var valModel = modelValue || viewValue;
-                    return (/[0-9]/).test(valModel);
+                    return (/[A-Za-z]/).test(valModel);
+                }
+
+                ngModel.$asyncValidators.black = function (modelValue, viewValue) {
+                    var deferred = $q.defer();
+                    $http.get("https://restcountries.eu/rest/v2/region/" + viewValue).then(
+                        function (response) {
+                            if (response.data.length > 0) {
+                                deferred.reject();
+                            } else {
+                                deferred.resolve();
+                            }
+                        });
+
+                    return deferred.promise;
                 }
 
             }
