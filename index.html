@@ -15,19 +15,29 @@
             <div class="col col-sm-6">
                 <form name="miForm">
                     <div class="form-group">
-                        <label for="nInputPrueba">Texto: </label>
+                        <label for="nInputPrueba">Nombre País (Entre 2 y 10 letras, Lista Negra: Europe):</label>
 
-                        <input type="text" name="nInputPrueba" class="form-control" ng-model="mNumero" ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
-                            placeholder="Ingresa números" custom-validator>
+                        <!-- <input type="text" name="nInputPrueba" class="form-control" ng-model="mNumero"
+                            ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
+                            placeholder="Ingresa País" custom-validator> -->
+                            
+                        <input type="text" name="nInputPrueba" class="form-control" ng-model="mNumero"
+                            placeholder="Ingresa País" custom-validator>
 
                         <div ng-messages="miForm.nInputPrueba.$error">
-                            <p ng-message="required" class="invalid">
+                            <p ng-message="required">
                                 Este campo es requerido
                             </p>
-                            <p ng-message="pattern" class="invalid">
-                                Sólo números
+                            <p ng-message="pattern">
+                                Debe escribir sólo letras
                             </p>
-                            <p ng-message="black" class="invalid">
+                            <p ng-message="patternMinLength">
+                                Debe escribir más de 2 letras
+                            </p>
+                            <p ng-message="patternMaxLength">
+                                Debe escribir menos de 10 letras
+                            </p>
+                            <p ng-message="black">
                                 Lista negra
                             </p>
                         </div>

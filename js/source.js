@@ -5,17 +5,24 @@ angular
             restrict: 'A',
             require: 'ngModel',
             link: function (scope, element, attr, ngModel) {
-                ngModel.$validators.required = function requiredParser(modelValue, viewValue) {
+                ngModel.$validators.required = function (modelValue, viewValue) {
                     var valModel = modelValue || viewValue;
-                    if (valModel !== "" && valModel != undefined && valModel !== null && valModel != "null")
-                        return true;
-                    else
-                        return false;
+                    return (valModel !== "" && valModel != undefined && valModel !== null && valModel != "null");
                 }
 
-                ngModel.$validators.pattern = function patternParser(modelValue, viewValue) {
+                ngModel.$validators.pattern = function (modelValue, viewValue) {
                     var valModel = modelValue || viewValue;
                     return (/[A-Za-z]/).test(valModel);
+                }
+
+                ngModel.$validators.patternMinLength = function (modelValue, viewValue) {
+                    var valModel = modelValue || viewValue;
+                    return valModel !== undefined && valModel.length > 2;
+                }
+
+                ngModel.$validators.patternMaxLength = function (modelValue, viewValue) {
+                    var valModel = modelValue || viewValue;
+                    return valModel !== undefined && valModel.length < 10;
                 }
 
                 ngModel.$asyncValidators.black = function (modelValue, viewValue) {
