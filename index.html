@@ -13,18 +13,18 @@
     <div class="container" ng-app="app">
         <div class="row">
             <div class="col col-sm-6">
-                <form name="miForm">
+                <div ng-form name="miForm">
                     <div class="form-group">
                         <label for="nInputPrueba">Nombre País (Entre 2 y 10 letras, Lista Negra: Europe):</label>
 
                         <!-- <input type="text" name="nInputPrueba" class="form-control" ng-model="mNumero"
                             ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}"
                             placeholder="Ingresa País" custom-validator> -->
-                            
+
                         <input type="text" name="nInputPrueba" class="form-control" ng-model="mNumero"
                             placeholder="Ingresa País" custom-validator>
 
-                        <div ng-messages="miForm.nInputPrueba.$error">
+                        <!-- <div ng-messages="miForm.nInputPrueba.$error">
                             <p ng-message="required">
                                 Este campo es requerido
                             </p>
@@ -40,10 +40,10 @@
                             <p ng-message="black">
                                 Lista negra
                             </p>
-                        </div>
+                        </div> -->
 
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
